@@ -19,7 +19,6 @@ public class Move : MonoBehaviour
     private float vitesseMin = 0.1f;
     public float acceleration = 1.0f;
 
-    public bool drawGizmoTarget = true;
     private bool atDestination = false;
 
     void Start()
@@ -34,21 +33,8 @@ public class Move : MonoBehaviour
         randomTargetPos = randomTargetPos.normalized * Random.Range(randomTargetDistMin, randomTargetDistMax);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (drawGizmoTarget)
-        {
-            // Sphère rouge a la distance de stop
-            Gizmos.color = new Color(1, 0, 0, 1.0f);
-            Gizmos.DrawWireSphere(targetPos, distStop);
-            // Sphère bleue a la distance de freinage
-            Gizmos.color = new Color(0, 0, 1, 1.0f);
-            Gizmos.DrawWireSphere(targetPos, distSlowDown);
-        }
-    }
-
-// Update is called once per frame
-void Update()
+    // Update is called once per frame
+    void Update()
     {
         //Mise a jour du comportement
         if (target == null)
