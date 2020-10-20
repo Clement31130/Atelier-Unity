@@ -1,0 +1,39 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Canard : MonoBehaviour
+
+{
+    public float MinSoundDelay = 1;
+    public float RandomDelay = 5;
+    private float NextSoundDelay = 0;
+    private AudioSource aSource;
+
+    private float MaxDeltaPitch = 0.1f;
+
+    private void computeNextSoundDelay()
+    {
+        NextSoundDelay = MinSoundDelay + Random.Range(0, RandomDelay);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        aSource = GetComponent<AudioSource>();
+        computeNextSoundDelay();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        NextSoundDelay -= Time.deltaTime;
+        if (NextSoundDelay <= 0)
+        {
+            aSource.Play();
+            //Variation du pitch entre +MaxDeltaPitch et -MaxDeltaPitch
+            aSource.pitch = 1 + Random.Range(0, MaxDeltaPitch) * 2 - MaxDeltaPitch;
+            computeNextSoundDelay();
+        }
+    }
+}
