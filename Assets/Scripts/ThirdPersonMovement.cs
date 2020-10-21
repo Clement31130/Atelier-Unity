@@ -22,7 +22,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public Transform cam;
 
-
+    private AudioSource JumpSFX;
 
     public float speed = 6;
 
@@ -48,7 +48,10 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
 
-
+    void Start()
+    {
+        JumpSFX = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
 
@@ -75,7 +78,7 @@ public class ThirdPersonMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
 
         {
-
+            JumpSFX.Play();
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
 
         }
