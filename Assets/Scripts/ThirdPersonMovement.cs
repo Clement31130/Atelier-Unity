@@ -83,6 +83,21 @@ public class ThirdPersonMovement : MonoBehaviour
 
         }
 
+        if (Input.GetButtonDown("Run"))
+
+        {
+            speed = speed * 2;
+
+        }
+
+        if (Input.GetButtonUp("Run"))
+
+        {
+            speed = speed/2;
+
+        }
+
+
         //gravity
 
         velocity.y += gravity * Time.deltaTime;
